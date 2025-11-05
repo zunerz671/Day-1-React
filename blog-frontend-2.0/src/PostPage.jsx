@@ -1,7 +1,8 @@
 import { PostIndex } from "./PostIndex";
 import { PostNew } from "./PostNew";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+// import { useEffect } from "react";
 
 export function PostPage() {
   // let posts = [];
@@ -16,13 +17,13 @@ export function PostPage() {
     })
   }
 
+  useEffect(handleIndex, []);
+
   return (
     <div>
       <PostNew />
-      <button onClick={handleIndex}>Load Posts</button>
       <PostIndex posts_prop={posts} />
     </div>
-
-
   );
+  
 }
