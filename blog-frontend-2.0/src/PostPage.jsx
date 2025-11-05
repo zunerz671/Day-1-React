@@ -1,32 +1,28 @@
 import { PostIndex } from "./PostIndex";
 import { PostNew } from "./PostNew";
+import axios from "axios";
+import { useState } from "react";
 
 export function PostPage() {
-  let posts = [
-    {
-      id: 1,
-      title: "Turtles",
-      body: "Haggan - CHamoru - Turtle",
-      image: "https://i0.wp.com/www.guammuseumfoundation.org/wp-content/uploads/2022/03/haggan-betde-turtle-guam-museum-scaled.jpg?fit=2560%2C1636&ssl=1"
-    },
-    {
-      id: 2,
-      title: "Volleyball",
-      body: "Haggan Volleyball",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbuqm55w7SUMW_oDLdNSLDezW5fgqHdS2cyA&s"
-    },
-    {
-      id: 3,
-      title: "Players",
-      body: "Haggan Volleyball Players",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkQNHsMarDjc4Il2XjBTlS0X95OMxKjoVu7w&s"
-    },
-  ];
+  // let posts = [];
+
+  const[posts, setPosts] = useState([]);
+
+  const handleIndex = () => {
+    axios.get("http://localhost:3000/posts").then((response) => {
+      console.log(response.data);
+      // posts = response.data;
+      setPosts(response.data);
+    })
+  }
 
   return (
     <div>
       <PostNew />
+      <button onClick={handleIndex}>Load Posts</button>
       <PostIndex posts_prop={posts} />
     </div>
+
+
   );
 }
