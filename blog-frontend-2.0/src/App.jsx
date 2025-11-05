@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <Header name={name3}/>
+      <Header name={name1}/>
       <Welcome name={name1}/>
       <Welcome name={name2}/>
       <Welcome name={name3}/>
