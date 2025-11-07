@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 // import { useEffect } from "react";
 import { Modal } from "./Modal";
+import { PostsShow } from "./PostsShow";
 
 export function PostPage() {
   // let posts = [];
@@ -35,8 +36,9 @@ export function PostPage() {
       <PostNew />
       <PostIndex posts_prop={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={() => setIsPostShowVisible(false)}>
-        <h2>Title: {currentPost.title}</h2>
-        <p>Body: {currentPost.body}</p>
+        {/* <h2>Title: {currentPost.title}</h2>
+        <p>Body: {currentPost.body}</p> */}
+        <PostsShow post={currentPost} />
       </Modal>
     </div>
   );
