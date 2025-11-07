@@ -10,6 +10,10 @@ export function PostPage() {
 
   const[posts, setPosts] = useState([]);
 
+  const[isPostShowVisible, setIsPostShowVisible] = useState(false);
+
+  const[currentPost, setCurrentPost] = useState({});
+
   const handleIndex = () => {
     axios.get("http://localhost:3000/posts").then((response) => {
       console.log(response.data);
@@ -20,6 +24,8 @@ export function PostPage() {
 
   const handleShow = (post) => {
     console.log("handleShow", post);
+    setIsPostShowVisible(true);
+    setCurrentPost(post);
   }
 
   useEffect(handleIndex, []);
@@ -28,8 +34,9 @@ export function PostPage() {
     <div>
       <PostNew />
       <PostIndex posts_prop={posts} onShow={handleShow} />
-      <Modal show={true}>
-        <p>TEST</p>
+      <Modal show={isPostShowVisible} onClose={() => setIsPostShowVisible(false)}>
+        <h2>Title: {currentPost.title}</h2>
+        <p>Body: {currentPost.body}</p>
       </Modal>
     </div>
   );
