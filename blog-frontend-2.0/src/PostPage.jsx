@@ -3,6 +3,7 @@ import { PostNew } from "./PostNew";
 import axios from "axios";
 import { useState, useEffect } from "react";
 // import { useEffect } from "react";
+import { Modal } from "./Modal";
 
 export function PostPage() {
   // let posts = [];
@@ -17,13 +18,20 @@ export function PostPage() {
     })
   }
 
+  const handleShow = (post) => {
+    console.log("handleShow", post);
+  }
+
   useEffect(handleIndex, []);
 
   return (
     <div>
       <PostNew />
-      <PostIndex posts_prop={posts} />
+      <PostIndex posts_prop={posts} onShow={handleShow} />
+      <Modal show={true}>
+        <p>TEST</p>
+      </Modal>
     </div>
   );
-  
+
 }
