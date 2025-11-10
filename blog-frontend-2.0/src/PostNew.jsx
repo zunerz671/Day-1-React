@@ -2,8 +2,11 @@ export function PostNew(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onCreate();
-  }
+    const form = event.target;
+    const params = new FormData(form);
+    props.onCreate(params);
+    form.reset();
+  };
   return (
     <div id="post-new">
       <h1>Title</h1>

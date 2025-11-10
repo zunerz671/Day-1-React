@@ -20,18 +20,22 @@ export function PostPage() {
       console.log(response.data);
       // posts = response.data;
       setPosts(response.data);
-    })
-  }
+    });
+  };
 
   const handleShow = (post) => {
     console.log("handleShow", post);
     setIsPostShowVisible(true);
     setCurrentPost(post);
-  }
+  };
 
-  const handleCreate = () => {
+  const handleCreate = (params) => {
     console.log("HandleCreate");
-  }
+    axios.post("http://localhost:3000/posts", params).then((response) => {
+      console.log(response.data);
+      setPosts([...posts, response.data]);
+    });
+  };
 
   useEffect(handleIndex, []);
 
