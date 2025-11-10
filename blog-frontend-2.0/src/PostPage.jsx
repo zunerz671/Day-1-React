@@ -29,11 +29,15 @@ export function PostPage() {
     setCurrentPost(post);
   }
 
+  const handleCreate = () => {
+    console.log("HandleCreate");
+  }
+
   useEffect(handleIndex, []);
 
   return (
     <div>
-      <PostNew />
+      <PostNew onCreate={handleCreate} />
       <PostIndex posts_prop={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={() => setIsPostShowVisible(false)}>
         {/* <h2>Title: {currentPost.title}</h2>
