@@ -30,12 +30,16 @@ export function PostPage() {
   };
 
   const handleCreate = (params) => {
-    console.log("HandleCreate");
+    console.log("handleCreate");
     axios.post("http://localhost:3000/posts", params).then((response) => {
       console.log(response.data);
       setPosts([...posts, response.data]);
     });
   };
+
+  const handleUpdate = () => {
+    console.log("handleUpdate");
+  }
 
   useEffect(handleIndex, []);
 
@@ -44,9 +48,7 @@ export function PostPage() {
       <PostNew onCreate={handleCreate} />
       <PostIndex posts_prop={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={() => setIsPostShowVisible(false)}>
-        {/* <h2>Title: {currentPost.title}</h2>
-        <p>Body: {currentPost.body}</p> */}
-        <PostsShow post={currentPost} />
+        <PostsShow post={currentPost} onUpdate={handleUpdate} />
       </Modal>
     </div>
   );
