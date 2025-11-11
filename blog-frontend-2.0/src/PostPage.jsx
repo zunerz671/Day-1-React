@@ -37,8 +37,14 @@ export function PostPage() {
     });
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (post, params) => {
     console.log("handleUpdate");
+    axios.patch(`http://localhost:3000/posts/${post.id}`, params).then((response) => {
+      console.log(response.data);
+
+      setPosts(posts.map(p => p.id === response.data.id ? response.data : p))
+      setIsPostShowVisible(false);
+    })
   }
 
   useEffect(handleIndex, []);

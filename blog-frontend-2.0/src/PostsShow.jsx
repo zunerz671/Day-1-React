@@ -1,7 +1,10 @@
 export function PostsShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onUpdate();
+    const form = event.target;
+    const params = new FormData(form);
+    props.onUpdate(props.post, params);
+    form.reset();
   }
 
   return (
@@ -17,6 +20,9 @@ export function PostsShow(props) {
         </div>
         <div>
           Body: <input name="body" defaultValue={props.post.body} type="text" />
+        </div>
+        <div>
+          Image reference address: <input name="image" defaultValue={props.post.image} type="text" /> 
         </div>
         <button type="submit">Update Post</button>
       </form>
