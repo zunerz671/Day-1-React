@@ -1,4 +1,5 @@
 export function PostsShow(props) {
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -26,6 +27,7 @@ export function PostsShow(props) {
         </div>
         <button type="submit">Update Post</button>
       </form>
+      <button onClick={() => props.onDestroy(props.post)}>Delete Post</button>
     </div>
   )
 }

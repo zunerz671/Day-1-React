@@ -47,6 +47,15 @@ export function PostPage() {
     })
   }
 
+  const handleDestroy = (post) => {
+    console.log("handleDestroy", post);
+    axios.delete(`http://localhost:3000/posts/${post.id}`).then((response) => {
+      console.log(response.data);
+      setPosts(posts.filter(p => p.id !== post.id));
+      setIsPostShowVisible(false);
+    })
+  }
+
   useEffect(handleIndex, []);
 
   return (
@@ -54,7 +63,7 @@ export function PostPage() {
       <PostNew onCreate={handleCreate} />
       <PostIndex posts_prop={posts} onShow={handleShow} />
       <Modal show={isPostShowVisible} onClose={() => setIsPostShowVisible(false)}>
-        <PostsShow post={currentPost} onUpdate={handleUpdate} />
+        <PostsShow post={currentPost} onUpdate={handleUpdate} onDestroy={handleDestroy} />
       </Modal>
     </div>
   );
